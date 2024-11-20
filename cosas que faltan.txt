@@ -1,0 +1,11 @@
+Enemigo 1 = genericco (dipara/segir/embestir)
+Enemigo 2 = jefe
+trampa (pinchos/laser)
+cofre
+pj principal (to)
+armas(pistola/laser/mele/metralleta[por agregar])
+tile map (4*4 con sala de jefe)(todas las run iguales)
+GUI(barras de vida / energia / moneda)
+storyboard (matar jefe sale este)
+pociones/curas
+tokens (energia/moneda)
