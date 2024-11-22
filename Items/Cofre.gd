@@ -10,6 +10,8 @@ func _process(delta):
 		
 		get_parent().add_child(botiquinInstancia)
 		botiquinInstancia.global_position = self.global_position
+		$AnimationPlayer.play("open")
+		await get_tree().create_timer(1).timeout
 		self.queue_free()
 		
 

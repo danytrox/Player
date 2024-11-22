@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpk0wvjn5b0xb"]
+[gd_scene load_steps=4 format=3 uid="uid://dpk0wvjn5b0xb"]
 
 [ext_resource type="Script" path="res://Items/Botiquin.gd" id="1_jpj0l"]
+[ext_resource type="Texture2D" uid="uid://dsouclok2mnwi" path="res://asset/pickups/botiquin.png" id="2_6n7rr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_upsej"]
 
@@ -12,5 +13,12 @@ script = ExtResource("1_jpj0l")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_upsej")
 debug_color = Color(4.33177e-07, 0.634723, 0.425697, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, 3)
+texture = ExtResource("2_6n7rr")
+hframes = 24
+vframes = 2
+frame = 15
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
