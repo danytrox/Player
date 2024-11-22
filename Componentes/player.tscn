@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://gyul7sdy1i82"]
+[gd_scene load_steps=16 format=3 uid="uid://gyul7sdy1i82"]
 
-[ext_resource type="Texture2D" uid="uid://c54xevlwykyry" path="res://icon.svg" id="1_dm08i"]
 [ext_resource type="Script" path="res://Componentes/player.gd" id="1_juytb"]
 [ext_resource type="PackedScene" uid="uid://bbmqaxnsny75u" path="res://Componentes/HealthComponent.tscn" id="2_5ab1j"]
 [ext_resource type="PackedScene" uid="uid://c20lwf23s7jf" path="res://Componentes/bala_player.tscn" id="2_vwu1f"]
 [ext_resource type="Script" path="res://Componentes/Laser.gd" id="3_ny2yh"]
 [ext_resource type="PackedScene" uid="uid://qt7h3io8chkv" path="res://Componentes/hitbox_controler.tscn" id="3_ppvsu"]
+[ext_resource type="Texture2D" uid="uid://hba5c5gv4g85" path="res://asset/base/quieto-Sheet.png" id="6_ifb8u"]
+[ext_resource type="Texture2D" uid="uid://c52p50oeuapma" path="res://asset/base/movimiento-Sheet.png" id="7_x14cs"]
+[ext_resource type="Texture2D" uid="uid://d1vs4puvg4omy" path="res://asset/base/daño-Sheet.png" id="8_oiybw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5kt1t"]
 size = Vector2(690, 20)
@@ -13,7 +15,175 @@ size = Vector2(690, 20)
 [sub_resource type="CircleShape2D" id="CircleShape2D_tndv5"]
 radius = 12.0
 
+[sub_resource type="Animation" id="Animation_qiyvs"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_ifb8u")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_n6goo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_ifb8u")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_8308h"]
+resource_name = "Move_horizo"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_x14cs")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 6, 8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+
+[sub_resource type="Animation" id="Animation_x4n8n"]
+resource_name = "daño"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 2, 4, 5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_oiybw")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s5wi2"]
+_data = {
+"Idle": SubResource("Animation_qiyvs"),
+"Move_horizo": SubResource("Animation_8308h"),
+"RESET": SubResource("Animation_n6goo"),
+"daño": SubResource("Animation_x4n8n")
+}
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_juytb")
 bala = ExtResource("2_vwu1f")
 
@@ -26,10 +196,6 @@ script = ExtResource("3_ny2yh")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lacer"]
 position = Vector2(364.286, 1.24888e-07)
 shape = SubResource("RectangleShape2D_5kt1t")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("1_dm08i")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_5ab1j")]
 scale = Vector2(0.7, 0.7)
@@ -51,6 +217,16 @@ offset_right = 4.0
 offset_bottom = -21.0
 max_value = 5.0
 value = 5.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("6_ifb8u")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_s5wi2")
+}
 
 [connection signal="area_entered" from="Lacer" to="Lacer" method="_on_area_entered"]
 [connection signal="onDamageTook" from="HealthComponent" to="." method="_on_health_component_on_damage_took"]
