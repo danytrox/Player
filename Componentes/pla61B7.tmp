@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://gyul7sdy1i82"]
+[gd_scene load_steps=16 format=3 uid="uid://gyul7sdy1i82"]
 
 [ext_resource type="Script" path="res://Componentes/player.gd" id="1_juytb"]
 [ext_resource type="PackedScene" uid="uid://bbmqaxnsny75u" path="res://Componentes/HealthComponent.tscn" id="2_5ab1j"]
@@ -6,10 +6,8 @@
 [ext_resource type="Script" path="res://Componentes/Laser.gd" id="3_ny2yh"]
 [ext_resource type="PackedScene" uid="uid://qt7h3io8chkv" path="res://Componentes/hitbox_controler.tscn" id="3_ppvsu"]
 [ext_resource type="Texture2D" uid="uid://hba5c5gv4g85" path="res://asset/base/quieto-Sheet.png" id="6_ifb8u"]
-[ext_resource type="Texture2D" uid="uid://cj86pnphs62s3" path="res://asset/Armas/balas/laser-Sheet.png" id="6_m2kks"]
 [ext_resource type="Texture2D" uid="uid://c52p50oeuapma" path="res://asset/base/movimiento-Sheet.png" id="7_x14cs"]
 [ext_resource type="Texture2D" uid="uid://d1vs4puvg4omy" path="res://asset/base/daño-Sheet.png" id="8_oiybw"]
-[ext_resource type="Texture2D" uid="uid://e03qglj3p66t" path="res://asset/Armas/armas/laser/laser-Sheet.png" id="9_ndba2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5kt1t"]
 size = Vector2(690, 20)
@@ -184,111 +182,11 @@ _data = {
 "daño": SubResource("Animation_x4n8n")
 }
 
-[sub_resource type="Animation" id="Animation_058r3"]
-resource_name = "laser"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("9_ndba2")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(13.5, 2.5)]
-}
-
-[sub_resource type="Animation" id="Animation_ktia8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("9_ndba2")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(13.5, 2.5)]
-}
-
-[sub_resource type="Animation" id="Animation_q4kow"]
-resource_name = "laserDispa"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("9_ndba2")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [1, 3, 4, 5, 6, 7]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rgx04"]
-_data = {
-"RESET": SubResource("Animation_ktia8"),
-"laser": SubResource("Animation_058r3"),
-"laserDispa": SubResource("Animation_q4kow")
-}
-
 [node name="CharacterBody2D" type="CharacterBody2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_juytb")
 bala = ExtResource("2_vwu1f")
+inventario = null
 
 [node name="Lacer" type="Area2D" parent="."]
 position = Vector2(-2.38419e-07, -1.50463e-36)
@@ -299,14 +197,6 @@ script = ExtResource("3_ny2yh")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lacer"]
 position = Vector2(364.286, 1.24888e-07)
 shape = SubResource("RectangleShape2D_5kt1t")
-
-[node name="laser" type="Sprite2D" parent="Lacer/CollisionShape2D"]
-texture_filter = 1
-position = Vector2(-228.278, -0.550865)
-rotation = 1.55858
-scale = Vector2(2.20935, 2.42455)
-texture = ExtResource("6_m2kks")
-hframes = 7
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_5ab1j")]
 scale = Vector2(0.7, 0.7)
@@ -341,16 +231,7 @@ libraries = {
 
 [node name="Armas" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(13.5, 2.5)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("9_ndba2")
-hframes = 8
-frame = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Armas"]
-libraries = {
-"": SubResource("AnimationLibrary_rgx04")
-}
+hframes = 5
 
 [connection signal="area_entered" from="Lacer" to="Lacer" method="_on_area_entered"]
 [connection signal="onDamageTook" from="HealthComponent" to="." method="_on_health_component_on_damage_took"]

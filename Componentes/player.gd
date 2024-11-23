@@ -11,8 +11,10 @@ var vida
 var arma =''
 var daño = false 
 @export var bala:PackedScene
-
 @export var inventario = ['cuchillo','pistola','laser','metralleta']
+
+
+
 var posiInventario = 1
 
 var laserActiv= false 
@@ -21,9 +23,8 @@ func _ready():
 	$HitboxControler/CollisionShape2D.disabled = true
 	$Lacer/CollisionShape2D.disabled = true
 	$AnimationPlayer.play("Idle")
+	$Armas/AnimationPlayer.play("laserDispa")
 	
-
-
 #RECORDATORIO: BALANCEAR ARMAS
 #NO TIENE SENTIDO EL MEELE SI LAS OTRA DOS ESTAN ROTISIMAS
 
@@ -64,14 +65,13 @@ func _physics_process(delta):
 				await get_tree().create_timer(1).timeout
 				$Lacer/CollisionShape2D.disabled = true
 				laserActiv = false
-				
 		if inventario.has('metralleta') and posiInventario == 4: 
 			arma= 'metralleta'
 			if Input.is_action_just_pressed("ui_accept"):
+				$Armas/AnimationPlayer.play("laserDispa")
 				balaDisp(tipo,arma)
-
-				
-		
+			
+			
 		var direction_x = Input.get_axis("ui_left", "ui_right")
 		if direction_x:
 			
@@ -79,20 +79,27 @@ func _physics_process(delta):
 			velocity.x = direction_x * SPEED
 			if direction_x == 1:
 				$Sprite2D.flip_h = false
+
 				if !daño:
 					$AnimationPlayer.play("Move_horizo")
 				$HitboxControler.position = Vector2(38,0) 
 				$Marker2D.position = Vector2(40,0) 
 				if !laserActiv:
+					$Armas.flip_h = false
+					$Armas.position = Vector2(13.5,2.5)
 					$Lacer.global_rotation_degrees= 0
 				
 			elif direction_x == -1:
 				if !daño:
 					$AnimationPlayer.play("Move_horizo")
+				$Armas.position = Vector2(-13.5,2.5)
+				$Armas.flip_h = true
 				$Sprite2D.flip_h = true
 				$HitboxControler.position = Vector2(-38,0) 
 				$Marker2D.position = Vector2(-40,0) 
 				if !laserActiv:
+					$Armas.position = Vector2(13.5,2.5)
+					$Lacer.global_rotation_degrees= 0
 					$Lacer.global_rotation_degrees= 180
 		else:
 			if !daño:
