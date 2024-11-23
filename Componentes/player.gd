@@ -23,12 +23,14 @@ func _ready():
 	$HitboxControler/CollisionShape2D.disabled = true
 	$Lacer/CollisionShape2D.disabled = true
 	$AnimationPlayer.play("Idle")
+	$Lacer/CollisionShape2D/laser.visible = false
 
-	
 #RECORDATORIO: BALANCEAR ARMAS
 #NO TIENE SENTIDO EL MEELE SI LAS OTRA DOS ESTAN ROTISIMAS
 
 func _physics_process(delta):
+	
+	$Label.text = str(Global.puntuacion) 
 	vida =$HealthComponent.current_health
 	$ProgressBar.value = vida
 	
@@ -39,18 +41,20 @@ func _physics_process(delta):
 			posiInventario = 1
 		if Input.is_action_just_pressed('inv2') and inventario.has('pistola'):
 			$Armas.texture = load("res://asset/Armas/armas/pistola/pistola-Sheet.png")
-			
 			posiInventario = 2
 		if Input.is_action_just_pressed('inv3') and inventario.has('laser'):
+			$Armas.texture = load("res://asset/Armas/armas/laser/laser-Sheet.png")
 			posiInventario = 3
 		if Input.is_action_just_pressed('inv4') and inventario.has ('metralleta'):
+			$Armas.texture = load("res://asset/Armas/armas/Metralleta/metralleta-Sheet.png")
 			posiInventario = 4
-		 
+			
 		#vamos agregando al array segun que armas encontremos 
 		
 		if inventario.has('cuchillo') and posiInventario == 1  : 
 			if Input.is_action_just_pressed("ui_accept"):
 				$HitboxControler/CollisionShape2D.disabled = false
+				$animArmas.play("mele")
 				await get_tree().create_timer(0.2).timeout
 				$HitboxControler/CollisionShape2D.disabled = true
 				
@@ -58,25 +62,33 @@ func _physics_process(delta):
 			
 			arma = "pistola"
 			if Input.is_action_just_pressed("ui_accept"):
-				print("pase en inventario")
+				$animArmas.play("pistola")
 				balaDisp(tipo,arma)
 				
 		if inventario.has('laser') and posiInventario == 3: 
 			if Input.is_action_just_pressed("ui_accept"):
-				$Lacer/CollisionShape2D.disabled = false
-				laserActiv = true
-				await get_tree().create_timer(1).timeout
-				$Lacer/CollisionShape2D.disabled = true
-				laserActiv = false
+				if Global.laserMuni > 0:
+					Global.laserMuni = Global.laserMuni - 1 
+					$Lacer/CollisionShape2D.disabled = false
+					laserActiv = true
+					$Lacer/CollisionShape2D/laser.visible = true
+					$animArmas.play("laserDisp")
+					$Lacer/CollisionShape2D/AnimationPlayer.play("dispLase")
+					await get_tree().create_timer(1).timeout
+					$Lacer/CollisionShape2D/laser.visible = false
+					$Lacer/CollisionShape2D.disabled = true
+					laserActiv = false
 		if inventario.has('metralleta') and posiInventario == 4: 
 			arma= 'metralleta'
 			if Input.is_action_just_pressed("ui_accept"):
+				$animArmas.play("metraDisp")
 				balaDisp(tipo,arma)
 			
 			
 		var direction_x = Input.get_axis("ui_left", "ui_right")
 		if direction_x:
 			tipo = "Horizontal"
+			$Armas.rotation_degrees = 0
 			velocity.x = direction_x * SPEED
 			if direction_x == 1:
 				$Sprite2D.flip_h = false
@@ -108,14 +120,19 @@ func _physics_process(delta):
 			
 		var direction_y = Input.get_axis("ui_up", "ui_down")
 		if direction_y:
+			$Armas.rotation_degrees = -90
 			tipo = "vertical"
 			velocity.y = direction_y * SPEED
 			if direction_y == 1:
+				$Sprite2D.flip_h = true
+				$Armas.flip_h = true
 				$HitboxControler.position = Vector2(0,38) 
 				$Marker2D.position = Vector2(0,40) 
 				if !laserActiv:
 					$Lacer.global_rotation_degrees= 90
 			elif direction_y == -1:
+				$Sprite2D.flip_h = false 
+				$Armas.flip_h = false
 				$HitboxControler.position = Vector2(0,-38) 
 				$Marker2D.position = Vector2(0,-40) 
 				if !laserActiv:
@@ -151,14 +168,12 @@ func balaDisp(Tipo,arma):
 				bala_disparar.velocidad_y = -700
 				bala_disparar.global_position = $Marker2D.global_position
 		if arma == "pistola":
-			print("paso en la instancia")
 			bala_disparar.scale= Vector2(1,1)
 			get_parent().add_child(bala_disparar)
 			time_disp = false
 			await get_tree().create_timer(0.6).timeout
 			time_disp = true
 		elif arma == "metralleta":
-			print("estoy en metralleta")
 			bala_disparar.scale= Vector2(0.5,0.5)
 			get_parent().add_child(bala_disparar)
 			time_disp = false
@@ -192,7 +207,6 @@ func _on_health_component_on_damage_took():
 	daño= true
 	$AnimationPlayer.play("daño")
 	#desabilitamos el proceso de Healthcomponent para que no nos hagan daño 
-	print($HealthComponent.current_health)
 	$HealthComponent.process_mode = Node.PROCESS_MODE_DISABLED
 	await get_tree().create_timer(1).timeout
 	$HealthComponent.process_mode = Node.PROCESS_MODE_INHERIT

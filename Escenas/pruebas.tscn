@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://btgw4jjdbf426"]
+[gd_scene load_steps=14 format=3 uid="uid://btgw4jjdbf426"]
 
 [ext_resource type="PackedScene" uid="uid://gyul7sdy1i82" path="res://Componentes/player.tscn" id="1_71jtm"]
 [ext_resource type="Script" path="res://Escenas/pruebas.gd" id="1_iq5k6"]
@@ -8,11 +8,15 @@
 [ext_resource type="PackedScene" uid="uid://cetkkqxt6v5np" path="res://Items/cofre.tscn" id="6_pafer"]
 [ext_resource type="PackedScene" uid="uid://c8fwgf0innakt" path="res://Items/caja.tscn" id="8_if473"]
 [ext_resource type="PackedScene" uid="uid://dv1rhjq0qtauk" path="res://Items/trampa.tscn" id="8_nckj8"]
+[ext_resource type="PackedScene" uid="uid://c5aepebx7dfbr" path="res://Items/moneda.tscn" id="9_71y50"]
+[ext_resource type="PackedScene" uid="uid://cbhbviehi30pi" path="res://Escenas/enemigodisp.tscn" id="10_lylar"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c3b10"]
 size = Vector2(83, 20)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p3kny"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fob6y"]
 
 [node name="Pruebas" type="Node2D"]
 script = ExtResource("1_iq5k6")
@@ -56,6 +60,20 @@ position = Vector2(309, 89)
 [node name="CharacterBody2D3" parent="." instance=ExtResource("8_if473")]
 position = Vector2(439, 484)
 
+[node name="Prueba dinero" type="Area2D" parent="."]
+position = Vector2(1408, 102)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prueba dinero"]
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_fob6y")
+
+[node name="CharacterBody2D4" parent="." instance=ExtResource("9_71y50")]
+position = Vector2(270, 391)
+
+[node name="CharacterBody2D5" parent="." instance=ExtResource("10_lylar")]
+position = Vector2(1324, 620)
+
 [connection signal="transicion" from="." to="CharacterBody2D" method="_on_pruebas_transicion"]
 [connection signal="body_entered" from="Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
 [connection signal="TranDere" from="pruebaCam" to="CharacterBody2D" method="_on_prueba_cam_tran_dere"]
+[connection signal="body_entered" from="Prueba dinero" to="." method="_on_prueba_dinero_body_entered"]

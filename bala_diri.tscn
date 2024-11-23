@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://wo4a7tapkhcj"]
+
+[ext_resource type="PackedScene" uid="uid://qt7h3io8chkv" path="res://Componentes/hitbox_controler.tscn" id="1_tdlso"]
+[ext_resource type="Script" path="res://bala_diri.gd" id="1_uv0gv"]
+[ext_resource type="Texture2D" uid="uid://dqof6o6635pk3" path="res://asset/Armas/balas/municion-Sheet.png" id="2_srhkd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_13my2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ocgbw"]
+radius = 121.202
+
+[node name="balaDiri" type="CharacterBody2D"]
+script = ExtResource("1_uv0gv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_13my2")
+one_way_collision_margin = 0.0
+debug_color = Color(0, 0.6, 0.701961, 0.647059)
+
+[node name="HitboxControler" parent="." instance=ExtResource("1_tdlso")]
+scale = Vector2(0.3, 0.337)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_srhkd")
+hframes = 6
+
+[node name="detectPlayer" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="detectPlayer"]
+scale = Vector2(4, 4)
+shape = SubResource("CircleShape2D_ocgbw")
+debug_color = Color(0, 0.6, 0.701961, 0.0470588)
+
+[connection signal="body_entered" from="HitboxControler" to="." method="_on_hitbox_controler_body_entered"]
+[connection signal="body_entered" from="detectPlayer" to="." method="_on_detect_player_body_entered"]

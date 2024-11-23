@@ -9,7 +9,18 @@ var velocidad_y:int
 func _process(delta):
 	self.position.x += velocidad_x * delta
 	self.position.y += velocidad_y *delta
-	pass
+	
+	#posicionamiento del sprite segun que parametros x,y le pasemos
+	if velocidad_y == 700 and velocidad_x == 0:
+		$Sprite2D.rotation_degrees = 90
+	elif velocidad_y == -700 and velocidad_x == 0:
+		$Sprite2D.rotation_degrees = -90
+		
+	if velocidad_x == 700 and velocidad_y == 0:
+		$Sprite2D.rotation_degrees = 0
+	elif velocidad_x == -700 and velocidad_y == 0:
+		$Sprite2D.rotation_degrees = 180
+
 
 func balaPlayer():
 	pass

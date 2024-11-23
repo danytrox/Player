@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbhbviehi30pi"]
+
+[ext_resource type="Script" path="res://Escenas/enemigodisp.gd" id="1_i34rt"]
+[ext_resource type="PackedScene" uid="uid://bbmqaxnsny75u" path="res://Componentes/HealthComponent.tscn" id="1_tvklw"]
+[ext_resource type="PackedScene" uid="uid://wo4a7tapkhcj" path="res://bala_diri.tscn" id="2_u485e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vl04y"]
+radius = 20.3961
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w88wa"]
+radius = 218.929
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_i34rt")
+baladiri = ExtResource("2_u485e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vl04y")
+debug_color = Color(0.755477, 0.391681, 0.613618, 0.42)
+
+[node name="HealthComponent" parent="." instance=ExtResource("1_tvklw")]
+scale = Vector2(2, 2)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-119, 0)
+shape = SubResource("CircleShape2D_w88wa")
+
+[node name="Timer" type="Timer" parent="Area2D"]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-59, 0)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Area2D/Timer" to="." method="_on_timer_timeout"]
