@@ -23,7 +23,7 @@ func _ready():
 	$HitboxControler/CollisionShape2D.disabled = true
 	$Lacer/CollisionShape2D.disabled = true
 	$AnimationPlayer.play("Idle")
-	$Armas/AnimationPlayer.play("laserDispa")
+
 	
 #RECORDATORIO: BALANCEAR ARMAS
 #NO TIENE SENTIDO EL MEELE SI LAS OTRA DOS ESTAN ROTISIMAS
@@ -35,8 +35,11 @@ func _physics_process(delta):
 	if movimientoActivo:
 		#Inventario check // NOTA: esta logica se puede mil veces mejorar pero por tiempo ekisde :/
 		if Input.is_action_just_pressed('inv1'):
+			$Armas.texture = load("res://asset/Armas/armas/mele/mele-Sheet.png")
 			posiInventario = 1
 		if Input.is_action_just_pressed('inv2') and inventario.has('pistola'):
+			$Armas.texture = load("res://asset/Armas/armas/pistola/pistola-Sheet.png")
+			
 			posiInventario = 2
 		if Input.is_action_just_pressed('inv3') and inventario.has('laser'):
 			posiInventario = 3
@@ -68,37 +71,34 @@ func _physics_process(delta):
 		if inventario.has('metralleta') and posiInventario == 4: 
 			arma= 'metralleta'
 			if Input.is_action_just_pressed("ui_accept"):
-				$Armas/AnimationPlayer.play("laserDispa")
 				balaDisp(tipo,arma)
 			
 			
 		var direction_x = Input.get_axis("ui_left", "ui_right")
 		if direction_x:
-			
 			tipo = "Horizontal"
 			velocity.x = direction_x * SPEED
 			if direction_x == 1:
 				$Sprite2D.flip_h = false
+				$Armas.flip_h = false
+				$Armas.position = Vector2(10,2.5)
 
 				if !daño:
 					$AnimationPlayer.play("Move_horizo")
 				$HitboxControler.position = Vector2(38,0) 
 				$Marker2D.position = Vector2(40,0) 
 				if !laserActiv:
-					$Armas.flip_h = false
-					$Armas.position = Vector2(13.5,2.5)
 					$Lacer.global_rotation_degrees= 0
 				
 			elif direction_x == -1:
 				if !daño:
 					$AnimationPlayer.play("Move_horizo")
-				$Armas.position = Vector2(-13.5,2.5)
+				$Armas.position = Vector2(-10,0)
 				$Armas.flip_h = true
 				$Sprite2D.flip_h = true
-				$HitboxControler.position = Vector2(-38,0) 
 				$Marker2D.position = Vector2(-40,0) 
+				$HitboxControler.position = Vector2(-38,0) 
 				if !laserActiv:
-					$Armas.position = Vector2(13.5,2.5)
 					$Lacer.global_rotation_degrees= 0
 					$Lacer.global_rotation_degrees= 180
 		else:

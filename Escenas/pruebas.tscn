@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://n3dm51eqaj00" path="res://Componentes/prueba_cam.tscn" id="4_5hyvm"]
 [ext_resource type="PackedScene" uid="uid://bixqvhqy4mhvw" path="res://Enemigos/enemigo_envestida.tscn" id="5_46u26"]
 [ext_resource type="PackedScene" uid="uid://cetkkqxt6v5np" path="res://Items/cofre.tscn" id="6_pafer"]
-[ext_resource type="PackedScene" uid="uid://dpk0wvjn5b0xb" path="res://Items/botiquin.tscn" id="7_4mol6"]
+[ext_resource type="PackedScene" uid="uid://c8fwgf0innakt" path="res://Items/caja.tscn" id="8_if473"]
 [ext_resource type="PackedScene" uid="uid://dv1rhjq0qtauk" path="res://Items/trampa.tscn" id="8_nckj8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c3b10"]
@@ -45,16 +45,16 @@ position = Vector2(118, 573)
 position = Vector2(849, 141)
 
 [node name="Enemigo3" parent="." instance=ExtResource("2_5dc8l")]
-position = Vector2(1007, 145)
+position = Vector2(1008, 146)
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("6_pafer")]
 position = Vector2(768, 459)
 
-[node name="CharacterBody2D3" parent="." instance=ExtResource("7_4mol6")]
-position = Vector2(430, 108)
-
 [node name="Node2D" parent="." instance=ExtResource("8_nckj8")]
 position = Vector2(309, 89)
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("8_if473")]
+position = Vector2(439, 484)
 
 [connection signal="transicion" from="." to="CharacterBody2D" method="_on_pruebas_transicion"]
 [connection signal="body_entered" from="Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]

@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dv1rhjq0qtauk"]
+[gd_scene load_steps=5 format=3 uid="uid://dv1rhjq0qtauk"]
 
 [ext_resource type="Script" path="res://Items/trampa.gd" id="1_bwgon"]
+[ext_resource type="Texture2D" uid="uid://hqayiukjjepi" path="res://asset/trampas/pinchos-Sheet.png" id="2_v8el7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkkwu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_15nev"]
 
 [node name="Node2D" type="Node2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_bwgon")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -21,6 +23,13 @@ debug_color = Color(0.986922, 0, 0.318526, 0.42)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="boton"]
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_15nev")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+texture = ExtResource("2_v8el7")
+hframes = 2
+frame = 1
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="boton" to="." method="_on_boton_body_entered"]
