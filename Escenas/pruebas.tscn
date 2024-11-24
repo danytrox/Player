@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://btgw4jjdbf426"]
+[gd_scene load_steps=17 format=3 uid="uid://btgw4jjdbf426"]
 
 [ext_resource type="PackedScene" uid="uid://gyul7sdy1i82" path="res://Componentes/player.tscn" id="1_71jtm"]
 [ext_resource type="Script" path="res://Escenas/pruebas.gd" id="1_iq5k6"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://c5aepebx7dfbr" path="res://Items/moneda.tscn" id="9_71y50"]
 [ext_resource type="PackedScene" uid="uid://cbhbviehi30pi" path="res://Escenas/enemigodisp.tscn" id="10_lylar"]
 [ext_resource type="PackedScene" uid="uid://b7t8nhftgl3m5" path="res://armaDrop.tscn" id="11_urlso"]
+[ext_resource type="PackedScene" uid="uid://bqa8bb0eheive" path="res://disppenser.tscn" id="12_npxkx"]
+[ext_resource type="PackedScene" uid="uid://bg6ux7snsgi6o" path="res://jarron.tscn" id="13_prmth"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c3b10"]
 size = Vector2(83, 20)
@@ -77,7 +79,15 @@ position = Vector2(1324, 620)
 [node name="armadrop" parent="." instance=ExtResource("11_urlso")]
 position = Vector2(752, 561)
 
+[node name="disppenser" parent="." instance=ExtResource("12_npxkx")]
+position = Vector2(446, 66)
+
+[node name="CharacterBody2D6" parent="." instance=ExtResource("13_prmth")]
+position = Vector2(556, 500)
+
 [connection signal="transicion" from="." to="CharacterBody2D" method="_on_pruebas_transicion"]
 [connection signal="body_entered" from="Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
 [connection signal="TranDere" from="pruebaCam" to="CharacterBody2D" method="_on_prueba_cam_tran_dere"]
 [connection signal="body_entered" from="Prueba dinero" to="." method="_on_prueba_dinero_body_entered"]
+
+[editable path="Enemigo3"]

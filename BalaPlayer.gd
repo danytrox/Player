@@ -24,19 +24,17 @@ func _process(delta):
 		
 func tipoBala(tipo):
 	if tipo == 'pistola':
-		$HitboxControler.damage = 1
-		print("damage" + str($HitboxControler.damage))
+		$hitbox_enemigo.damage = 1
+
 	if tipo == 'metralleta':
-		$HitboxControler.damage = 0.5
-		print("damage" + str($HitboxControler.damage))
+		$hitbox_enemigo.damage = 0.5
 
 
 func balaPlayer():
 	pass
 
-
-func _on_hitbox_controler_body_entered(body):
-	#si el cuerpo es distinto a yo mismo me destruyo (danery : "es muy aweona esta linea")
+func _on_hitbox_enemigo_body_entered(body):
+		#si el cuerpo es distinto a yo mismo me destruyo (danery : "es muy aweona esta linea")
 	if body != $".":
 		self.queue_free()
-
+	pass # Replace with function body.

@@ -20,7 +20,7 @@ var posiInventario = 1
 var laserActiv= false 
 
 func _ready():
-	$HitboxControler/CollisionShape2D.disabled = true
+	$hitbox_enemigo/CollisionShape2D.disabled = true
 	$Lacer/CollisionShape2D.disabled = true
 	$AnimationPlayer.play("Idle")
 	$Lacer/CollisionShape2D/laser.visible = false
@@ -29,6 +29,8 @@ func _ready():
 #NO TIENE SENTIDO EL MEELE SI LAS OTRA DOS ESTAN ROTISIMAS
 
 func _physics_process(delta):
+	var vida = $HealthComponent.current_health
+	Global.vidaPlayer = vida
 	inventario = Global.inventario
 	
 	$Label.text = str(Global.puntuacion) 
@@ -54,10 +56,10 @@ func _physics_process(delta):
 		
 		if inventario.has('cuchillo') and posiInventario == 1  : 
 			if Input.is_action_just_pressed("ui_accept"):
-				$HitboxControler/CollisionShape2D.disabled = false
+				$hitbox_enemigo/CollisionShape2D.disabled = false
 				$animArmas.play("mele")
 				await get_tree().create_timer(0.2).timeout
-				$HitboxControler/CollisionShape2D.disabled = true
+				$hitbox_enemigo/CollisionShape2D.disabled = true
 				
 		if inventario.has('pistola') and posiInventario == 2 : 
 			
@@ -98,7 +100,8 @@ func _physics_process(delta):
 
 				if !daño:
 					$AnimationPlayer.play("Move_horizo")
-				$HitboxControler.position = Vector2(38,0) 
+
+				$hitbox_enemigo.position = Vector2(26,0) 
 				$Marker2D.position = Vector2(40,0) 
 				if !laserActiv:
 					$Lacer.global_rotation_degrees= 0
@@ -110,7 +113,8 @@ func _physics_process(delta):
 				$Armas.flip_h = true
 				$Sprite2D.flip_h = true
 				$Marker2D.position = Vector2(-40,0) 
-				$HitboxControler.position = Vector2(-38,0) 
+
+				$hitbox_enemigo.position = Vector2(-26,0) 
 				if !laserActiv:
 					$Lacer.global_rotation_degrees= 0
 					$Lacer.global_rotation_degrees= 180
@@ -127,14 +131,16 @@ func _physics_process(delta):
 			if direction_y == 1:
 				$Sprite2D.flip_h = true
 				$Armas.flip_h = true
-				$HitboxControler.position = Vector2(0,38) 
+				$hitbox_enemigo.position = Vector2(0,26)
+				
 				$Marker2D.position = Vector2(0,40) 
 				if !laserActiv:
 					$Lacer.global_rotation_degrees= 90
 			elif direction_y == -1:
 				$Sprite2D.flip_h = false 
 				$Armas.flip_h = false
-				$HitboxControler.position = Vector2(0,-38) 
+				$hitbox_enemigo.position = Vector2(0,-26) 
+				
 				$Marker2D.position = Vector2(0,-40) 
 				if !laserActiv:
 					$Lacer.global_rotation_degrees= -90

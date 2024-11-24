@@ -1,10 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://c20lwf23s7jf"]
 
 [ext_resource type="Script" path="res://BalaPlayer.gd" id="1_g6kjx"]
-[ext_resource type="PackedScene" uid="uid://qt7h3io8chkv" path="res://Componentes/hitbox_controler.tscn" id="2_vo3ac"]
 [ext_resource type="Texture2D" uid="uid://dqof6o6635pk3" path="res://asset/Armas/balas/municion-Sheet.png" id="3_5oahm"]
+[ext_resource type="PackedScene" uid="uid://d2catmnlrme27" path="res://hitbox_enemigo.tscn" id="3_c0hd1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jiji3"]
+radius = 6.0
 
 [node name="BalaPlayer" type="CharacterBody2D"]
 script = ExtResource("1_g6kjx")
@@ -12,14 +13,11 @@ script = ExtResource("1_g6kjx")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_jiji3")
 
-[node name="HitboxControler" parent="." instance=ExtResource("2_vo3ac")]
-scale = Vector2(0.3, 0.3)
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("3_5oahm")
 hframes = 6
 
-[connection signal="body_entered" from="HitboxControler" to="." method="_on_hitbox_controler_body_entered"]
+[node name="hitbox_enemigo" parent="." instance=ExtResource("3_c0hd1")]
 
-[editable path="HitboxControler"]
+[connection signal="body_entered" from="hitbox_enemigo" to="." method="_on_hitbox_enemigo_body_entered"]
