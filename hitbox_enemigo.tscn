@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2catmnlrme27"]
+
+[ext_resource type="Script" path="res://hitbox_enemigo.gd" id="1_48lf8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cuqur"]
+radius = 12.0
+
+[node name="hitbox_enemigo" type="Area2D"]
+script = ExtResource("1_48lf8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cuqur")
+debug_color = Color(0.283848, 0.630799, 1.92523e-07, 0.42)

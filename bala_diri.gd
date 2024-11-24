@@ -3,6 +3,7 @@ var speed = 400
 var player = null
 
 func _ready():
+	$AnimationPlayer.play("disp")
 	pass
 
 #los enemigos kls se matan entre si chingada madreeee

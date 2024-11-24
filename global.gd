@@ -3,6 +3,10 @@ extends Node
 var puntuacion = 0
 var laserMuni = 4
 
+var inventario= ['cuchillo']
+
+var vidaPlayer : int
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

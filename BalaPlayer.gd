@@ -20,14 +20,21 @@ func _process(delta):
 		$Sprite2D.rotation_degrees = 0
 	elif velocidad_x == -700 and velocidad_y == 0:
 		$Sprite2D.rotation_degrees = 180
+		
+		
+func tipoBala(tipo):
+	if tipo == 'pistola':
+		$hitbox_enemigo.damage = 1
+
+	if tipo == 'metralleta':
+		$hitbox_enemigo.damage = 0.5
 
 
 func balaPlayer():
 	pass
 
-
-func _on_hitbox_controler_body_entered(body):
-	#si el cuerpo es distinto a yo mismo me destruyo (danery : "es muy aweona esta linea")
+func _on_hitbox_enemigo_body_entered(body):
+		#si el cuerpo es distinto a yo mismo me destruyo (danery : "es muy aweona esta linea")
 	if body != $".":
 		self.queue_free()
-
+	pass # Replace with function body.

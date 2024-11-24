@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://bbmqaxnsny75u" path="res://Componentes/HealthComponent.tscn" id="2_5ab1j"]
 [ext_resource type="PackedScene" uid="uid://c20lwf23s7jf" path="res://Componentes/bala_player.tscn" id="2_vwu1f"]
 [ext_resource type="Script" path="res://Componentes/Laser.gd" id="3_ny2yh"]
-[ext_resource type="PackedScene" uid="uid://qt7h3io8chkv" path="res://Componentes/hitbox_controler.tscn" id="3_ppvsu"]
 [ext_resource type="Texture2D" uid="uid://cen4xwp3fui61" path="res://asset/Armas/balas/laser_V2-Sheet.png" id="4_ie72j"]
 [ext_resource type="Texture2D" uid="uid://hba5c5gv4g85" path="res://asset/base/quieto-Sheet.png" id="6_ifb8u"]
 [ext_resource type="Texture2D" uid="uid://c52p50oeuapma" path="res://asset/base/movimiento-Sheet.png" id="7_x14cs"]
@@ -13,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://4sl2b4tuoybg" path="res://asset/Armas/armas/pistola/pistola-Sheet.png" id="11_7m87a"]
 [ext_resource type="Texture2D" uid="uid://e03qglj3p66t" path="res://asset/Armas/armas/laser/laser-Sheet.png" id="12_jfiji"]
 [ext_resource type="Texture2D" uid="uid://d2k0np0imaqew" path="res://asset/Armas/armas/Metralleta/metralleta-Sheet.png" id="13_7m8na"]
+[ext_resource type="PackedScene" uid="uid://d2catmnlrme27" path="res://hitbox_enemigo.tscn" id="13_gjre6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5kt1t"]
 size = Vector2(690, 20)
@@ -586,10 +586,6 @@ libraries = {
 scale = Vector2(0.7, 0.7)
 max_health = 5
 
-[node name="HitboxControler" parent="." instance=ExtResource("3_ppvsu")]
-position = Vector2(38, 1)
-scale = Vector2(0.5, 0.5)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tndv5")
 
@@ -634,8 +630,11 @@ offset_right = 40.0
 offset_bottom = 33.5
 text = "0"
 
+[node name="hitbox_enemigo" parent="." instance=ExtResource("13_gjre6")]
+position = Vector2(26.5, 0.5)
+
 [connection signal="area_entered" from="Lacer" to="Lacer" method="_on_area_entered"]
 [connection signal="onDamageTook" from="HealthComponent" to="." method="_on_health_component_on_damage_took"]
 [connection signal="onDead" from="HealthComponent" to="." method="_on_health_component_on_dead"]
 
-[editable path="HitboxControler"]
+[editable path="hitbox_enemigo"]
