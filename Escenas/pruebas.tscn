@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://btgw4jjdbf426"]
+[gd_scene load_steps=15 format=3 uid="uid://btgw4jjdbf426"]
 
 [ext_resource type="PackedScene" uid="uid://gyul7sdy1i82" path="res://Componentes/player.tscn" id="1_71jtm"]
 [ext_resource type="Script" path="res://Escenas/pruebas.gd" id="1_iq5k6"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dv1rhjq0qtauk" path="res://Items/trampa.tscn" id="8_nckj8"]
 [ext_resource type="PackedScene" uid="uid://c5aepebx7dfbr" path="res://Items/moneda.tscn" id="9_71y50"]
 [ext_resource type="PackedScene" uid="uid://cbhbviehi30pi" path="res://Escenas/enemigodisp.tscn" id="10_lylar"]
+[ext_resource type="PackedScene" uid="uid://b7t8nhftgl3m5" path="res://armaDrop.tscn" id="11_urlso"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c3b10"]
 size = Vector2(83, 20)
@@ -72,6 +73,9 @@ position = Vector2(270, 391)
 
 [node name="CharacterBody2D5" parent="." instance=ExtResource("10_lylar")]
 position = Vector2(1324, 620)
+
+[node name="armadrop" parent="." instance=ExtResource("11_urlso")]
+position = Vector2(752, 561)
 
 [connection signal="transicion" from="." to="CharacterBody2D" method="_on_pruebas_transicion"]
 [connection signal="body_entered" from="Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]

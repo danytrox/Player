@@ -11,7 +11,7 @@ var vida
 var arma =''
 var daño = false 
 @export var bala:PackedScene
-@export var inventario = ['cuchillo','pistola','laser','metralleta']
+@export var inventario = Global.inventario
 
 
 
@@ -29,6 +29,7 @@ func _ready():
 #NO TIENE SENTIDO EL MEELE SI LAS OTRA DOS ESTAN ROTISIMAS
 
 func _physics_process(delta):
+	inventario = Global.inventario
 	
 	$Label.text = str(Global.puntuacion) 
 	vida =$HealthComponent.current_health
@@ -168,12 +169,15 @@ func balaDisp(Tipo,arma):
 				bala_disparar.velocidad_y = -700
 				bala_disparar.global_position = $Marker2D.global_position
 		if arma == "pistola":
+			bala_disparar.tipoBala('pistola')
 			bala_disparar.scale= Vector2(1,1)
 			get_parent().add_child(bala_disparar)
 			time_disp = false
 			await get_tree().create_timer(0.6).timeout
 			time_disp = true
 		elif arma == "metralleta":
+			bala_disparar.tipoBala('metralleta')
+			
 			bala_disparar.scale= Vector2(0.5,0.5)
 			get_parent().add_child(bala_disparar)
 			time_disp = false
@@ -211,3 +215,9 @@ func _on_health_component_on_damage_took():
 	await get_tree().create_timer(1).timeout
 	$HealthComponent.process_mode = Node.PROCESS_MODE_INHERIT
 	daño= false
+
+
+func _on_armadrop_pistola_señal():
+	print("nose porque esta wea no funciona")
+	inventario.append('pistola')
+	pass # Replace with function body.

@@ -20,6 +20,15 @@ func _process(delta):
 		$Sprite2D.rotation_degrees = 0
 	elif velocidad_x == -700 and velocidad_y == 0:
 		$Sprite2D.rotation_degrees = 180
+		
+		
+func tipoBala(tipo):
+	if tipo == 'pistola':
+		$HitboxControler.damage = 1
+		print("damage" + str($HitboxControler.damage))
+	if tipo == 'metralleta':
+		$HitboxControler.damage = 0.5
+		print("damage" + str($HitboxControler.damage))
 
 
 func balaPlayer():

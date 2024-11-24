@@ -6,7 +6,7 @@
 radius = 48.0416
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5krth"]
-radius = 70.0
+radius = 50.8035
 
 [node name="HitboxControler" type="Area2D"]
 script = ExtResource("1_gghdt")
