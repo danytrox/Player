@@ -19,5 +19,6 @@ texture = ExtResource("3_5oahm")
 hframes = 6
 
 [node name="hitbox_enemigo" parent="." instance=ExtResource("3_c0hd1")]
+damage = 0
 
 [connection signal="body_entered" from="hitbox_enemigo" to="." method="_on_hitbox_enemigo_body_entered"]

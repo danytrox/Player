@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bg6ux7snsgi6o"]
+[gd_scene load_steps=9 format=3 uid="uid://bg6ux7snsgi6o"]
 
 [ext_resource type="Script" path="res://jarron.gd" id="1_aycu7"]
 [ext_resource type="PackedScene" uid="uid://bbmqaxnsny75u" path="res://Componentes/HealthComponent.tscn" id="1_p5tts"]
 [ext_resource type="Texture2D" uid="uid://b6kwbyvpwqmbo" path="res://asset/elemnetos destruibles/Destructible Objects Sprite Sheet.png" id="2_asfnm"]
+[ext_resource type="PackedScene" uid="uid://c5aepebx7dfbr" path="res://Items/moneda.tscn" id="2_gsfsb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4m80w"]
 
@@ -44,6 +45,7 @@ _data = {
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_aycu7")
+monea = ExtResource("2_gsfsb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4m80w")

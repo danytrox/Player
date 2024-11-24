@@ -5,6 +5,7 @@ var speed = 100
 var player = null
 
 func _ready():
+	$AnimationPlayer.play("idle")
 	pass
 
 

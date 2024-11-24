@@ -24,10 +24,10 @@ func _process(delta):
 		
 func tipoBala(tipo):
 	if tipo == 'pistola':
-		$hitbox_enemigo.damage = 1
+		$hitbox_enemigo.damage = 2
 
 	if tipo == 'metralleta':
-		$hitbox_enemigo.damage = 0.5
+		$hitbox_enemigo.damage = 1
 
 
 func balaPlayer():

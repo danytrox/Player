@@ -129,6 +129,7 @@ debug_color = Color(0.755477, 0.391681, 0.613618, 0.42)
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_tvklw")]
 scale = Vector2(2, 2)
+max_health = 5
 
 [node name="Area2D" type="Area2D" parent="."]
 

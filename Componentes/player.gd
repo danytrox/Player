@@ -129,14 +129,16 @@ func _physics_process(delta):
 			tipo = "vertical"
 			velocity.y = direction_y * SPEED
 			if direction_y == 1:
+
 				$Sprite2D.flip_h = true
 				$Armas.flip_h = true
 				$hitbox_enemigo.position = Vector2(0,26)
-				
 				$Marker2D.position = Vector2(0,40) 
 				if !laserActiv:
 					$Lacer.global_rotation_degrees= 90
 			elif direction_y == -1:
+				if !daño:
+					$AnimationPlayer.play("caminoArriba")
 				$Sprite2D.flip_h = false 
 				$Armas.flip_h = false
 				$hitbox_enemigo.position = Vector2(0,-26) 
@@ -183,7 +185,6 @@ func balaDisp(Tipo,arma):
 			time_disp = true
 		elif arma == "metralleta":
 			bala_disparar.tipoBala('metralleta')
-			
 			bala_disparar.scale= Vector2(0.5,0.5)
 			get_parent().add_child(bala_disparar)
 			time_disp = false

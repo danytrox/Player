@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://gyul7sdy1i82"]
+[gd_scene load_steps=32 format=3 uid="uid://gyul7sdy1i82"]
 
 [ext_resource type="Script" path="res://Componentes/player.gd" id="1_juytb"]
 [ext_resource type="PackedScene" uid="uid://bbmqaxnsny75u" path="res://Componentes/HealthComponent.tscn" id="2_5ab1j"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://hba5c5gv4g85" path="res://asset/base/quieto-Sheet.png" id="6_ifb8u"]
 [ext_resource type="Texture2D" uid="uid://c52p50oeuapma" path="res://asset/base/movimiento-Sheet.png" id="7_x14cs"]
 [ext_resource type="Texture2D" uid="uid://d1vs4puvg4omy" path="res://asset/base/daño-Sheet.png" id="8_oiybw"]
+[ext_resource type="Texture2D" uid="uid://vmva2x5ysyc6" path="res://asset/base/mover_arriba-Sheet.png" id="9_tdkf6"]
 [ext_resource type="Texture2D" uid="uid://cuh2h5s67eyj8" path="res://asset/Armas/armas/mele/mele-Sheet.png" id="10_4b755"]
 [ext_resource type="Texture2D" uid="uid://4sl2b4tuoybg" path="res://asset/Armas/armas/pistola/pistola-Sheet.png" id="11_7m87a"]
 [ext_resource type="Texture2D" uid="uid://e03qglj3p66t" path="res://asset/Armas/armas/laser/laser-Sheet.png" id="12_jfiji"]
@@ -212,6 +213,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [2]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
 
 [sub_resource type="Animation" id="Animation_x4n8n"]
 resource_name = "daño"
@@ -253,11 +266,64 @@ tracks/2/keys = {
 "values": [ExtResource("8_oiybw")]
 }
 
+[sub_resource type="Animation" id="Animation_20tph"]
+resource_name = "caminoArriba"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_tdkf6")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s5wi2"]
 _data = {
 "Idle": SubResource("Animation_qiyvs"),
 "Move_horizo": SubResource("Animation_8308h"),
 "RESET": SubResource("Animation_n6goo"),
+"caminoArriba": SubResource("Animation_20tph"),
 "daño": SubResource("Animation_x4n8n")
 }
 

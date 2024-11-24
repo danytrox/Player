@@ -7,6 +7,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	$Label.text = str(Global.puntuacion)
 	if Global.vidaPlayer == 5:
 		$VBoxContainer/base/VBoxContainer/vida.frame = 2
 	elif Global.vidaPlayer == 4:

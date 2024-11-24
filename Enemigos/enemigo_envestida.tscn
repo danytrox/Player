@@ -19,7 +19,7 @@ debug_color = Color(2.40654e-08, 0.650083, 0.113229, 0.42)
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_0iu72")]
 scale = Vector2(1.2, 1.2)
-max_health = 5
+max_health = 10
 
 [node name="HitboxControler" parent="." instance=ExtResource("3_ney5j")]
 scale = Vector2(0.7, 0.7)
