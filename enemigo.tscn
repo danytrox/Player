@@ -24,6 +24,7 @@ position = Vector2(1, 0)
 scale = Vector2(0.5, 0.5)
 
 [node name="detectPlayer" type="Area2D" parent="."]
+scale = Vector2(3.84, 3.2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detectPlayer"]
 shape = SubResource("CircleShape2D_1b2tu")

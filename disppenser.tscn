@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqa8bb0eheive"]
+
+[ext_resource type="Texture2D" uid="uid://cw012tfg6svdm" path="res://asset/expendedora/expendedora.png" id="1_6ikpx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oqpuj"]
+radius = 18.0
+
+[node name="disppenser" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oqpuj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_6ikpx")

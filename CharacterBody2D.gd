@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+@export var moneda:PackedScene
 
 func _on_health_component_on_dead():
 	$AnimationPlayer.play("destructor")
