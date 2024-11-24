@@ -18,6 +18,7 @@ debug_color = Color(0.967257, 0, 0.475396, 0.42)
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_vfbuv")]
 position = Vector2(1, -1)
+max_health = 6
 
 [node name="HitboxControler" parent="." instance=ExtResource("2_qpooe")]
 position = Vector2(1, 0)

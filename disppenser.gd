@@ -6,7 +6,8 @@ var playercheck = false
 
 
 func _process(delta):
-	if playercheck and Input.is_action_just_pressed("Accion"):
+	if playercheck and Input.is_action_just_pressed("Accion") and Global.puntuacion > 0:
+		Global.puntuacion = Global.puntuacion - 1 
 		$AnimationPlayer.play("animated")
 		await get_tree().create_timer(1).timeout
 		
