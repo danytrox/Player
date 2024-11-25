@@ -3,7 +3,7 @@ extends Node
 var puntuacion = 0
 var laserMuni = 4
 
-var inventario= ['cuchillo']
+var inventario= ['cuchillo','pistola','metralleta','laser']
 
 var vidaPlayer : int
 

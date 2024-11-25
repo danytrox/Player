@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bixqvhqy4mhvw"]
+[gd_scene load_steps=7 format=3 uid="uid://bixqvhqy4mhvw"]
 
 [ext_resource type="Script" path="res://EnemigoEnvestida.gd" id="1_brii4"]
 [ext_resource type="PackedScene" uid="uid://bbmqaxnsny75u" path="res://Componentes/HealthComponent.tscn" id="2_0iu72"]
 [ext_resource type="PackedScene" uid="uid://qt7h3io8chkv" path="res://Componentes/hitbox_controler.tscn" id="3_ney5j"]
+[ext_resource type="Texture2D" uid="uid://hba5c5gv4g85" path="res://asset/base/quieto-Sheet.png" id="4_b88os"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wgvvs"]
 radius = 21.095
@@ -60,6 +61,14 @@ scale = Vector2(5, 5)
 rotation = -3.14159
 shape = SubResource("SeparationRayShape2D_inidk")
 debug_color = Color(0.27294, 0.50122, 1, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0.635294, 0.780392, 1)
+self_modulate = Color(0.898039, 0.717647, 1, 1)
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("4_b88os")
+hframes = 2
 
 [connection signal="onDead" from="HealthComponent" to="." method="_on_health_component_on_dead"]
 [connection signal="body_entered" from="DeteccionPlayer/Arriba" to="." method="_on_arriba_body_entered"]
